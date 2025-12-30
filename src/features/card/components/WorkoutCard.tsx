@@ -9,7 +9,7 @@ export default function WorkoutCard({
   exerciseIds: string[];
 }) {
   return (
-    <div className="bg-white rounded-[6px] border border-[#E5E7EB] p-[6px]">
+    <div className="bg-white rounded-[3px] border border-[#E5E7EB] p-[6px]">
       {/* HEADER */}
       <div className="flex items-center justify-between mb-[6px]">
         <span className="text-[10px] font-bold uppercase text-[#5A57CB] truncate max-w-[120px] leading-none">

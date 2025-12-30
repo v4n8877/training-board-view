@@ -25,18 +25,18 @@ export default function TrainingDayColumn({ dayId }: { dayId: string }) {
         ref={setNodeRef}
         className="
           w-[179px]
-          h-[757.19px]
+          h-[761.19px]
           bg-[#F3F5F8]
           rounded-[6px]
           p-[7px]
           flex
           flex-col
-          gap-[10px]
+          gap-[6px]
         "
       >
-        <div className="flex items-center justify-between mt-[6px]">
+        <div className="flex items-center justify-between mt-[5px] ml-[5px]">
           <span className="text-[11px] font-semibold text-[#728096]">
-            {day.date}
+            {String(day.date).padStart(2, "0")}
           </span>
           {day.exerciseIds && day.exerciseIds.length > 0 && (
             <img
