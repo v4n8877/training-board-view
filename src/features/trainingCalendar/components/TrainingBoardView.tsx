@@ -8,11 +8,11 @@ import {
 } from "../services/mutations";
 
 import { DEFAULT_BOARD_ID } from "../constants/board.constants";
-import type { TrainingBoard } from "@/features/trainingCalendar/types/board";
+import type { TrainingBoard } from "../types/board";
 
-import TrainingBoardDndProvider from "@/features/trainingCalendar/dnd/TrainingBoardDndProvider";
+import TrainingBoardDndProvider from "../dnd/TrainingBoardDndProvider";
 import ExerciseCard from "@/features/card/components/ExerciseCard";
-import { useTrainingBoard } from "@/features/trainingCalendar/hooks/useTrainingBoard";
+import { useTrainingBoard } from "../hooks/useTrainingBoard";
 import TrainingDayColumn from "@/features/column/components/TrainingDayColumn";
 
 export default function TrainingBoardView() {
@@ -23,6 +23,7 @@ export default function TrainingBoardView() {
 
   const initialBoardRef = useRef<TrainingBoard | null>(null);
 
+  // Derived viewBoard, prefers tempState for drag preview
   const viewBoard = useMemo(
     () => getBoardViewState(tempState, board),
     [tempState, board]
@@ -30,23 +31,20 @@ export default function TrainingBoardView() {
 
   if (!viewBoard) return null;
 
+  /* ============================================================
+   * DRAG HANDLERS
+   * ============================================================ */
   function onDragStart(id: string) {
     setActiveId(id);
     initialBoardRef.current = structuredClone(viewBoard);
   }
 
   function onDragOver(event: DragOverEvent) {
-    setTempState((prev) =>
-      handleDragOver({
-        prev,
-        board: viewBoard,
-        event,
-      })
-    );
+    setTempState((prev) => handleDragOver({ prev, board: viewBoard, event }));
   }
 
   function onDragEnd(event: DragEndEvent) {
-    setActiveId(null);
+    if (!initialBoardRef.current) return;
 
     setBoard((prev) =>
       handleDragEnd({
@@ -56,6 +54,8 @@ export default function TrainingBoardView() {
       })
     );
 
+    // Reset temporary states
+    setActiveId(null);
     setTempState(null);
     initialBoardRef.current = null;
   }
@@ -73,8 +73,9 @@ export default function TrainingBoardView() {
         ) : null
       }
     >
-      <div className="flex justify-center bg-white">
-        <div className="w-[1440px] h-[900px] bg-white px-[60px] py-[60px]">
+      {/* BOARD CONTAINER */}
+      <div className="flex justify-center bg-white w-full min-h-screen py-10">
+        <div className="w-full max-w-[1440px] px-[60px]">
           <div className="overflow-x-auto overflow-y-hidden hide-scrollbar-x">
             <div className="flex gap-[10px] min-w-max justify-center">
               {viewBoard.dayOrder.map((dayId) => (

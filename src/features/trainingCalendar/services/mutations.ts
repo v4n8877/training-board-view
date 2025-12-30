@@ -131,6 +131,7 @@ export function handleDragOver({
  * DRAG END — COMMIT RESULT
  * ============================================================ */
 
+// 
 export function handleDragEnd({
   initial,
   board,
@@ -155,13 +156,22 @@ export function handleDragEnd({
   const { targetDayId, targetIndex } = getTargetLocation(board, overId);
   if (!targetDayId || targetIndex === undefined) return board;
 
-  return moveExercise(
+  const updatedBoard = moveExercise(
     initial,
     sourceDay.id,
     exerciseId,
     targetDayId,
     targetIndex
   );
+
+  // ✅ Persist to localStorage
+  try {
+    localStorage.setItem("trainingBoard", JSON.stringify(updatedBoard));
+  } catch (error) {
+    console.error("Failed to save board to localStorage:", error);
+  }
+
+  return updatedBoard;
 }
 
 /* ============================================================
