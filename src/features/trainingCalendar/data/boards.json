@@ -1,0 +1,93 @@
+{
+  "id": "planned-workout",
+  "title": "Planned Workout",
+
+  "dayOrder": ["monday", "tuesday", "wednesday", "thursday", "friday"],
+
+  "days": {
+    "monday": {
+      "id": "monday",
+      "title": "MON",
+      "date": 5,
+      "isToday": false,
+      "workoutTitle": "Chest day - with arm extension",
+      "exerciseIds": ["mon-1", "mon-2"]
+    },
+    "tuesday": {
+      "id": "tuesday",
+      "title": "TUE",
+      "date": 6,
+      "isToday": false,
+      "workoutTitle": "Leg day - strength focus",
+      "exerciseIds": ["tue-1", "tue-2"]
+    },
+    "wednesday": {
+      "id": "wednesday",
+      "title": "WED",
+      "date": 7,
+      "isToday": false,
+      "exerciseIds": []
+    },
+    "thursday": {
+      "id": "thursday",
+      "title": "THU",
+      "date": 8,
+      "isToday": false,
+      "workoutTitle": "Back & posterior chain",
+      "exerciseIds": ["thu-1"]
+    },
+    "friday": {
+      "id": "friday",
+      "title": "FRI",
+      "date": 9,
+      "isToday": true,
+      "workoutTitle": "Cardio & conditioning",
+      "exerciseIds": ["fri-1"]
+    }
+  },
+
+  "exercises": {
+    "mon-1": {
+      "id": "mon-1",
+      "dayId": "monday",
+      "title": "Bench Press Medium Grip",
+      "description": "50 lb x 5, 60 lb x 5",
+      "setsCount": 2
+    },
+    "mon-2": {
+      "id": "mon-2",
+      "dayId": "monday",
+      "title": "Incline Dumbbell Press",
+      "description": "30 lb x 8, 35 lb x 8, 40 lb x 6",
+      "setsCount": 3
+    },
+    "tue-1": {
+      "id": "tue-1",
+      "dayId": "tuesday",
+      "title": "Squat",
+      "description": "135 lb x 5, 155 lb x 5, 175 lb x 5, 185 lb x 5, 195 lb x 5",
+      "setsCount": 5
+    },
+    "tue-2": {
+      "id": "tue-2",
+      "dayId": "tuesday",
+      "title": "Leg Press",
+      "description": "200 lb x 12, 220 lb x 12, 240 lb x 12",
+      "setsCount": 3
+    },
+    "thu-1": {
+      "id": "thu-1",
+      "dayId": "thursday",
+      "title": "Deadlift",
+      "description": "185 lb x 6, 205 lb x 6, 225 lb x 6, 245 lb x 6",
+      "setsCount": 4
+    },
+    "fri-1": {
+      "id": "fri-1",
+      "dayId": "friday",
+      "title": "Running",
+      "description": "30 minutes steady pace",
+      "setsCount": 1
+    }
+  }
+}
